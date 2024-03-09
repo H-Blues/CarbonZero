@@ -26,7 +26,8 @@ contract AssetVerification is ChainlinkClient, Ownable {
 
     constructor(address _oracle, bytes32 _jobId, address _czNFTAddress) {
         setChainlinkToken(0x779877A7B0D9E8603169DdbD7836e478b4624789);
-        // setChainlinkOracle(0x6090149792dAAeE9D1D568c9f9a6F6B46AA29eFD);
+        // setChainlinkOracle(0x6090149792dAAeE9D1D568c9f9a6F6B46AA29eFD); //Ethereum Sepolia
+        // setChainJobId(c1c5e92880894eb6b27d3cae19670aa3);  // GET>bool
         oracle = _oracle;
         jobId = _jobId;
         fee = (1 * LINK_DIVISIBILITY) / 10;
