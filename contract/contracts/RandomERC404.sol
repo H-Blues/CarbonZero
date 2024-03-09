@@ -1,3 +1,6 @@
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
 import {IERC721Receiver} from "@openzeppelin/contracts/interfaces/IERC721Receiver.sol";
 import {IERC165} from "@openzeppelin/contracts/interfaces/IERC165.sol";
 import {IERC404} from "./interfaces/IERC404.sol";
@@ -5,81 +8,102 @@ import {DoubleEndedQueue} from "./lib/DoubleEndedQueue.sol";
 import {ERC721Events} from "./lib/ERC721Events.sol";
 import {ERC20Events} from "./lib/ERC20Events.sol";
 
-import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
-import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
-import "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol";
+import {VRFCoordinatorV2Interface} from "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
+import {VRFConsumerBaseV2} from "@chainlink/contracts/src/v0.8/vrf/VRFConsumerBaseV2.sol";
+import {ConfirmedOwner} from "@chainlink/contracts/src/v0.8/shared/access/ConfirmedOwner.sol";
 
-abstract contract ERC404 is Ownable, VRFConsumerBaseV2 {
-
-    DoubleEndedQueue.Uint256Deque private _storedERC721Ids;
-    VRFCoordinatorV2Interface private immutable vrfCoordinator;
-    LinkTokenInterface private immutable linkToken;
-    bytes32 private immutable keyHash;
+abstract contract ERC404 is IERC404, VRFConsumerBaseV2, ConfirmedOwner  {
+    VRFCoordinatorV2Interface private  vrfCoordinator;
+    bytes32 private immutable keyHash = 0x481254ff75bb65593fbed4ec220c8988eb0f8a532a4929441be9fed3e4306c09;
     uint32 private immutable callbackGasLimit = 100000;
     uint16 private constant REQUEST_CONFIRMATIONS = 3;
-    uint64 private immutable subscriptionId;
+    uint64 private immutable subscriptionId = 1;
     uint256 private constant fee = 0.1 * 10**18; // 0.1 LINK
 
     mapping(uint256 => address) private requestIdToSender;
 
-    string public name;
-    string public symbol;
-    uint8 public immutable decimals;
-    uint256 public immutable units;
-    uint256 public totalSupply;
-    uint256 public minted;
-    uint256 internal immutable _INITIAL_CHAIN_ID;
-    bytes32 internal immutable _INITIAL_DOMAIN_SEPARATOR;
-    mapping(address => uint256) public balanceOf;
-    mapping(address => mapping(address => uint256)) public allowance;
-    mapping(uint256 => address) public getApproved;
-    mapping(address => mapping(address => bool)) public isApprovedForAll;
-    mapping(uint256 => uint256) internal _ownedData;
-    mapping(address => uint256[]) internal _owned;
-    mapping(address => bool) internal _erc721TransferExempt;
-    mapping(address => uint256) public nonces;
-    uint256 private constant _BITMASK_ADDRESS = (1 << 160) - 1;
-    uint256 private constant _BITMASK_OWNED_INDEX = ((1 << 96) - 1) << 160;
-    uint256 public constant ID_ENCODING_PREFIX = 1 << 255;
+  using DoubleEndedQueue for DoubleEndedQueue.Uint256Deque;
 
+  /// @dev The queue of ERC-721 tokens stored in the contract.
+  DoubleEndedQueue.Uint256Deque private _storedERC721Ids;
 
-    constructor(
-        string memory _name,
-        string memory _symbol,
-        uint8 _decimals,
-        uint256 _totalNativeSupply,
-        address _owner,
-        address _vrfCoordinator,
-        address _linkToken,
-        bytes32 _keyHash,
-        uint64 _subscriptionId
-    )
-        Ownable(_owner)
-        VRFConsumerBaseV2(_vrfCoordinator)
-    {
-        name = name_;
-        symbol = symbol_;
+  /// @dev Token name
+  string public name;
 
-        if (decimals_ < 18) {
-            revert DecimalsTooLow();
-        }
+  /// @dev Token symbol
+  string public symbol;
 
-        decimals = decimals_;
-        units = 10 ** decimals;
+  /// @dev Decimals for ERC-20 representation
+  uint8 public  decimals;
 
-        // EIP-2612 initialization
-        _INITIAL_CHAIN_ID = block.chainid;
-        _INITIAL_DOMAIN_SEPARATOR = _computeDomainSeparator();
-        vrfCoordinator = VRFCoordinatorV2Interface(_vrfCoordinator);
-        linkToken = LinkTokenInterface(_linkToken);
-        keyHash = _keyHash;
-        subscriptionId = _subscriptionId;
+  /// @dev Units for ERC-20 representation
+  uint256 public  units;
+
+  /// @dev Total supply in ERC-20 representation
+  uint256 public totalSupply;
+
+  /// @dev Current mint counter which also represents the highest
+  ///      minted id, monotonically increasing to ensure accurate ownership
+  uint256 public minted;
+
+  /// @dev Initial chain id for EIP-2612 support
+  uint256 internal  _INITIAL_CHAIN_ID;
+
+  /// @dev Initial domain separator for EIP-2612 support
+  bytes32 internal  _INITIAL_DOMAIN_SEPARATOR;
+
+  /// @dev Balance of user in ERC-20 representation
+  mapping(address => uint256) public balanceOf;
+
+  /// @dev Allowance of user in ERC-20 representation
+  mapping(address => mapping(address => uint256)) public allowance;
+
+  /// @dev Approval in ERC-721 representaion
+  mapping(uint256 => address) public getApproved;
+
+  /// @dev Approval for all in ERC-721 representation
+  mapping(address => mapping(address => bool)) public isApprovedForAll;
+
+  /// @dev Packed representation of ownerOf and owned indices
+  mapping(uint256 => uint256) internal _ownedData;
+
+  /// @dev Array of owned ids in ERC-721 representation
+  mapping(address => uint256[]) internal _owned;
+
+  /// @dev Addresses that are exempt from ERC-721 transfer, typically for gas savings (pairs, routers, etc)
+  mapping(address => bool) internal _erc721TransferExempt;
+
+  /// @dev EIP-2612 nonces
+  mapping(address => uint256) public nonces;
+
+  /// @dev Address bitmask for packed ownership data
+  uint256 private constant _BITMASK_ADDRESS = (1 << 160) - 1;
+
+  /// @dev Owned index bitmask for packed ownership data
+  uint256 private constant _BITMASK_OWNED_INDEX = ((1 << 96) - 1) << 160;
+
+  /// @dev Constant for token id encoding
+  uint256 public constant ID_ENCODING_PREFIX = 1 << 255;
+
+  constructor(string memory name_, string memory symbol_, uint8 decimals_) {
+    name = name_;
+    symbol = symbol_;
+
+    if (decimals_ < 18) {
+      revert DecimalsTooLow();
     }
+
+    decimals = decimals_;
+    units = 10 ** decimals;
+
+    // EIP-2612 initialization
+    _INITIAL_CHAIN_ID = block.chainid;
+    _INITIAL_DOMAIN_SEPARATOR = _computeDomainSeparator();
+  }
 
     function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override {
         address sender = requestIdToSender[requestId];
         requestIdToSender[requestId] = address(0);
-        _mint(sender, randomWords[0]);
     }
 
     function requestRandomNFT() public returns (uint256 requestId) {
@@ -93,21 +117,7 @@ abstract contract ERC404 is Ownable, VRFConsumerBaseV2 {
         requestIdToSender[requestId] = msg.sender;
     }
 
-    function _mint(address to, uint256 randomNumber) internal {
-        uint256 id = randomNumber % totalSupply + 1;
-
-        if (_ownerOf[id] != address(0)) {
-            revert AlreadyExists();
-        }
-
-        _ownerOf[id] = to;
-        _owned[to].push(id);
-        _ownedIndex[id] = _owned[to].length - 1;
-
-        emit Transfer(address(0), to, id);
-    }
-
-    /// @notice Function to find owner of a given ERC-721 token
+  /// @notice Function to find owner of a given ERC-721 token
   function ownerOf(
     uint256 id_
   ) public view virtual returns (address erc721Owner) {
@@ -837,6 +847,4 @@ abstract contract ERC404 is Ownable, VRFConsumerBaseV2 {
 
     _ownedData[id_] = data;
   }
-}
-
 }
