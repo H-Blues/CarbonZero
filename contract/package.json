@@ -11,7 +11,9 @@
     "@typechain/hardhat": "^6.1.6",
     "@types/chai": "^4.3.5",
     "@types/mocha": "^9.1.1",
-    "chai": "^4.3.7",
+    "chai": "^4.4.1",
+    "ethereum-waffle": "^4.0.10",
+    "ethers": "^5.7.2",
     "hardhat": "^2.14.1",
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.7.22",
@@ -23,6 +25,7 @@
     "@chainlink/contracts": "^0.8.0",
     "@openzeppelin/contracts": "^4.9.0",
     "@openzeppelin/contracts-upgradeable": "^4.9.0",
+    "@openzeppelin/test-helpers": "^0.5.16",
     "dotenv": "^16.1.1",
     "hardhat-deploy": "^0.11.30",
     "mocha": "^10.2.0"

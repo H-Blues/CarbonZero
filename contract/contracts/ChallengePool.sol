@@ -41,7 +41,6 @@ contract ChallengePool is ReentrancyGuard {
         
         uint256 rewardAmount = address(this).balance / totalParticipants; // 计算ERC20奖励金额
 
-        // 退还押金
         require(czToken.transfer(msg.sender, depositAmount), "Refund transfer failed");
 
         if (wantERC721) {
@@ -50,7 +49,6 @@ contract ChallengePool is ReentrancyGuard {
             require(czToken.transfer(msg.sender, rewardAmount), "Reward transfer failed");
         }
 
-        // 重置用户状态
         deposits[msg.sender] = 0;
         completedChallenges[msg.sender] = false;
         totalParticipants -= 1;
