@@ -2,8 +2,9 @@
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-contract CZToken is ERC20Upgradeable {
+contract CZToken is ERC20Upgradeable, OwnableUpgradeable {
     mapping(address => bool) private hasClaimedLoginReward;
 
     function initialize(
@@ -14,8 +15,13 @@ contract CZToken is ERC20Upgradeable {
     ) public initializer {
         __ERC20_init(name_, symbol_);
         _setupDecimals(decimals_);
+        __Ownable_init();
         // Mint initial login reward amount for the contract itself
         _mint(address(this), initialLoginRewardAmount);
+    }
+
+    function mint(address to, uint256 amount) public onlyOwner {
+        _mint(to, amount);
     }
 
     function claimLoginReward() public {
