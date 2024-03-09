@@ -14,9 +14,9 @@ contract ChallengePool is ReentrancyGuard {
     mapping(address => bool) private completedChallenges;
     uint256 public totalParticipants;
 
-    constructor(CZToken _czToken, CZNFT _czNFT) {
-        czToken = _czToken;
-        czNFT = _czNFT;
+    constructor(address _czTokenAddress, address _czNFTAddress){
+        czToken = CZToken(_czTokenAddress);
+        czNFT = CZNFT(_czNFTAddress);
     }
 
     function deposit(uint256 amount) external {

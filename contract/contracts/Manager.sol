@@ -8,8 +8,14 @@ import "./LowCarbonProject.sol";
 import "./ChallengePool.sol";
 
 contract Manager is Ownable {
-    CZToken public czToken;
-    CZNFT public czNFT;
+    address public czTokenAddress;
+    address public cznftAddress;
+
+    constructor(address _czTokenAddress, address _cznftAddress) {
+        czTokenAddress = _czTokenAddress;
+        cznftAddress = _cznftAddress;
+    }
+
     address[] public carbonProjects;
     mapping(address => address) public challengePools;
 
@@ -32,7 +38,7 @@ contract Manager is Ownable {
             }
         }
         require(exists, "CarbonProject does not exist.");
-        ChallengePool newChallengePool = new ChallengePool(czToken, czNFT);
+        ChallengePool newChallengePool = new ChallengePool(czTokenAddress, cznftAddress);
         challengePools[carbonProjectAddress] = address(newChallengePool);
         emit ChallengePoolCreated(carbonProjectAddress, address(newChallengePool));
     }
