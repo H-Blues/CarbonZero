@@ -2,11 +2,10 @@ import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from 'next/router'
 import Image from 'next/image';
-
+import Connect from "./wallet";
 
 function Header({ headerClass = null }) {
   const [menu, setMenu] = useState(false);
-  const [show, setShow] = useState(false);
   const router = useRouter()
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -34,61 +33,43 @@ function Header({ headerClass = null }) {
         images[i].src = newSrc;
       }
     }
-
   }, [])
 
   const updateThemeColor = useCallback((themeMode = 'light') => {
-
     const colorSwitcher = document.getElementById('btnSwitch');
-
     document.documentElement.setAttribute('data-bs-theme', themeMode);
     localStorage.setItem('theme', themeMode)
 
     if (themeMode === 'dark') {
       colorSwitcher.classList.add('dark-switcher');
-
     } else {
       colorSwitcher.classList.remove('dark-switcher');
     }
-
     changeImage(themeMode);
-
   }, [changeImage]);
 
   const toggleTheme = () => {
-
-
     const theme = localStorage.getItem('theme');
-
     if (theme && theme === 'dark') {
-
       updateThemeColor('light');
-
     } else {
       updateThemeColor('dark');
-
     }
 
   };
 
-
   function switchThemeByUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const theme = urlParams.get('theme');
-
     if (theme) {
       localStorage.setItem("theme", theme);
     }
-
   }
-
 
   useEffect(() => {
     switchThemeByUrl();
     const theme = localStorage.getItem('theme');
     updateThemeColor(localStorage.getItem('theme'))
-
-
   }, [router.query.theme, updateThemeColor]);
 
   useEffect(() => {
@@ -121,7 +102,6 @@ function Header({ headerClass = null }) {
   const toggleMenu = () => {
     setMenu(!menu);
     closeAllMenus()
-
   }
 
   function removeActive() {
@@ -141,14 +121,6 @@ function Header({ headerClass = null }) {
         submenu.style.display = "none"
       }
     }
-  }
-
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const substr = (str, n) => {
-    return str.length > n ? str.substr(0, n - 1) : str;
   }
 
   return (
@@ -177,193 +149,33 @@ function Header({ headerClass = null }) {
               </div>
               <div className="menu-area">
                 <ul id="menu" className={`menu menu--style1 ${menu ? 'active' : ''}`}>
-                  <li className="megamenu menu-item-has-children">
-                    <Link scroll={false} href="/#0" onClick={toggleActive}>Demos </Link>
-
-
-                    <ul className="submenu">
-                      <li>
-                        <div className="home-showcase">
-                          <div className="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-                            <div className="col order-first">
-                              <div className="home-showcase__item">
-                                <div className="home-showcase__image">
-                                  <img src="images/demo/1.png" alt="home-showcase" />
-                                  <div className="home-showcase__buttons">
-
-                                    <Link href={{
-                                      pathname: '/',
-                                      query: { theme: "light" },
-                                    }}
-                                      className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></Link>
-                                  </div>
-                                </div>
-                                <h3 className="home-showcase__title">
-                                  <Link href={{
-                                    pathname: '/',
-                                    query: { theme: "light" },
-                                  }}>Stock Trading</Link>
-                                </h3>
-                              </div>
-                            </div>
-                            <div className="col">
-                              <div className="home-showcase__item">
-                                <div className="home-showcase__image">
-                                  <img src="images/demo/1-dark.png" alt="home-showcase" />
-                                  <div className="home-showcase__buttons">
-
-                                    <Link href={{
-                                      pathname: '/',
-                                      query: { theme: "dark" },
-                                    }}
-                                      className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></Link>
-                                  </div>
-                                </div>
-                                <h3 className="home-showcase__title"><Link href={{
-                                  pathname: '/',
-                                  query: { theme: "dark" },
-                                }}>Stock Trading Dark</Link>
-                                </h3>
-                              </div>
-                            </div>
-                            <div className="col">
-                              <div className="home-showcase__item">
-                                <div className="home-showcase__image">
-                                  <img src="images/demo/2.png" alt="home-showcase" />
-                                  <div className="home-showcase__buttons">
-                                    <Link href={{
-                                      pathname: '/index-2',
-                                      query: { theme: "light" },
-                                    }}
-                                      className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></Link>
-                                  </div>
-                                </div>
-                                <h3 className="home-showcase__title"> <Link href={{
-                                  pathname: '/index-2',
-                                  query: { theme: "light" },
-                                }}>Crypto Trading</Link>
-                                </h3>
-                              </div>
-                            </div>
-                            <div className="col">
-                              <div className="home-showcase__item">
-                                <div className="home-showcase__image">
-                                  <img src="images/demo/2-dark.png" alt="home-showcase" />
-                                  <div className="home-showcase__buttons">
-                                    <Link href={{
-                                      pathname: '/index-2',
-                                      query: { theme: "dark" },
-                                    }}
-                                      className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></Link>
-                                  </div>
-                                </div>
-                                <h3 className="home-showcase__title"> <Link href={{
-                                  pathname: '/index-2',
-                                  query: { theme: "dark" },
-                                }}>Crypto Trading Dark</Link>
-                                </h3>
-                              </div>
-                            </div>
-                            <div className="col">
-                              <div className="home-showcase__item">
-                                <div className="home-showcase__image">
-                                  <img src="images/demo/3.png" alt="home-showcase" />
-                                  <div className="home-showcase__buttons">
-                                    <Link href={{
-                                      pathname: '/index-3',
-                                      query: { theme: "light" },
-                                    }}
-                                      className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></Link>
-                                  </div>
-                                </div>
-                                <h3 className="home-showcase__title"><Link href={{
-                                  pathname: '/index-3',
-                                  query: { theme: "light" },
-                                }}>Forex Trading</Link>
-                                </h3>
-                              </div>
-                            </div>
-                            <div className="col">
-                              <div className="home-showcase__item">
-                                <div className="home-showcase__image">
-                                  <img src="images/demo/3-dark.png" alt="home-showcase" />
-                                  <div className="home-showcase__buttons">
-                                    <Link href={{
-                                      pathname: '/index-3',
-                                      query: { theme: "dark" },
-                                    }}
-                                      className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></Link>
-                                  </div>
-                                </div>
-                                <h3 className="home-showcase__title"><Link href={{
-                                  pathname: '/index-3',
-                                  query: { theme: "dark" },
-                                }}>Forex Trading Dark</Link>
-                                </h3>
-                              </div>
-                            </div>
-                            <div className="col order-last">
-                              <div className="home-showcase__item">
-                                <div className="home-showcase__image">
-                                  <img src="images/demo/new.png" alt="home-showcase" />
-                                </div>
-                                <h3 className="home-showcase__title"> <Link scroll={false} href="/#0">New Demos</Link>
-                                </h3>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
+                  <li className="megamenu">
+                    <Link scroll={false} href="/">Home </Link>
                   </li>
                   <li className="menu-item-has-children">
-                    <Link href="/services" onClick={toggleActive}>Services</Link>
+                    <Link href="/market" onClick={toggleActive}>Market</Link>
                     <ul className="submenu">
-                      <li><Link href="/services">Services</Link></li>
-                      <li><Link href="/service-details">Services Details</Link></li>
+                      <li><Link href="/market">Life</Link></li>
+                      <li><Link href="/market">Technology</Link></li>
+                      <li><Link href="/market">Fashion</Link></li>
+                      <li><Link href="/market">Industry</Link></li>
+                      <li><Link href="/market">Education</Link></li>
                     </ul>
-                  </li>
-                  <li className="menu-item-has-children">
-                    <Link scroll={false} href="/#0" onClick={toggleActive}>About</Link>
-                    <ul className="submenu">
-                      <li><Link href="/about">About Us</Link></li>
-                      <li><Link href="/price">Price</Link></li>
-                      <li><Link href="/team">Team</Link></li>
-                      <li><Link href="/team-2">Team 2</Link></li>
-                      <li><Link href="/team-details">Team Details</Link></li>
-                    </ul>
-                  </li>
-
-                  <li className="menu-item-has-children">
-                    <Link scroll={false} href="/#0" onClick={toggleActive}>Pages</Link>
-                    <ul className="submenu">
-                      <li><Link href="blogs">Blogs</Link></li>
-                      <li><Link href="blog-sidebar">Blog - Side Bar</Link></li>
-                      <li><Link href="blog-details">Blog Details</Link></li>
-                      <li><Link href="signup">Sign Up</Link></li>
-                      <li><Link href="signup-2">Sign Up 2</Link></li>
-                      <li><Link href="signin">Sign In</Link></li>
-                      <li><Link href="signin-2">Sign In 2</Link></li>
-                      <li><Link href="forgot-pass">Reset Password</Link></li>
-                      <li><Link href="forgot-pass-2">Reset Password 2</Link></li>
-                      <li><Link href="404">404 Error</Link></li>
-                    </ul>
-
                   </li>
                   <li>
-                    <Link href="contact">Contact Us</Link>
+                    <Link href="/donate" onClick={toggleActive}>Donate</Link>
+                  </li>
+                  <li>
+                    <Link href="/reputation" onClick={toggleActive}>Reputation</Link>
                   </li>
                 </ul>
               </div>
               <div className="header-action">
                 <div className="menu-area">
                   <div className="header-btn">
-                    <Link href="signup" className="trk-btn trk-btn--border trk-btn--primary">
-                      <span>Join Now</span>
-                    </Link>
+                    <Connect />
                   </div>
 
-                  {/* <!-- toggle icons --> */}
                   <div className={menu ? "header-bar d-lg-none header-bar--style1 active" : "header-bar d-lg-none header-bar--style1"} onClick={() => toggleMenu()}>
                     <span></span>
                     <span></span>
