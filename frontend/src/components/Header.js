@@ -168,6 +168,9 @@ function Header({ headerClass = null }) {
                   <li>
                     <Link href="/reputation" >Reputation</Link>
                   </li>
+                  <li>
+                    <Link href="https://shade-property-9b1.notion.site/CarbonZero-e67dc077f6164ed686524cb2dbc11283" >Doc</Link>
+                  </li>
                 </ul>
               </div>
               <div className="header-action">
