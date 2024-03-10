@@ -88,7 +88,7 @@ Please note that the translation aims to maintain clarity and accuracy while con
 
   - Implement the NFT reward system for users participating in corporate activities and making product purchases.
 
-**Phase 2: Platform Optimization and User Growth (Q3-Q5 2024)**
+**Phase 2: Platform Optimization and User Growth (Q3-Q4 2024)**
 
 - User Interface and Experience Optimization:
 
@@ -102,7 +102,7 @@ Please note that the translation aims to maintain clarity and accuracy while con
 
   - Attract more corporate partners to expand the platform's influence.
 
-**Phase 3: Technical Upgrades and Feature Expansion (Q8 2024 and beyond)**
+**Phase 3: Technical Upgrades and Feature Expansion (Q2 2025 and beyond)**
 
 - Oracle Integration and Carbon Pricing Platform:
 
