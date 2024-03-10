@@ -166,7 +166,7 @@ function Header({ headerClass = null }) {
                     <Link href="/donate" onClick={toggleActive}>Donate</Link>
                   </li>
                   <li>
-                    <Link href="/reputation" onClick={toggleActive}>Reputation</Link>
+                    <Link href="/reputation" >Reputation</Link>
                   </li>
                 </ul>
               </div>
