@@ -128,11 +128,10 @@ const Blog = () => {
         <div className="section-header d-md-flex align-items-center justify-content-between">
           <div className="section-header__content">
             <h2 className="mb-15">
-              <span>articles</span> for pro traders
+              <span>Low Carbon</span> Activities to Join
             </h2>
             <p className="mb-0">
-              Hey there pro traders, check out these articles with tips to take
-              your trading game to the next level!
+
             </p>
           </div>
           <div className="section-header__action">
