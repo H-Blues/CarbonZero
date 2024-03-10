@@ -1,48 +1,23 @@
-// SPDX-License-Identifier: agpl-3.0
-pragma solidity ^0.8.4;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract CZToken is ERC20Upgradeable, OwnableUpgradeable {
-    mapping(address => bool) private hasClaimedLoginReward;
+contract CZToken is ERC20, Ownable {
 
-    function initialize(
-        uint8 decimals_,
-        string calldata name_,
-        string calldata symbol_,
-        uint256 initialLoginRewardAmount
-    ) public initializer {
-        __ERC20_init(name_, symbol_);
-        _setupDecimals(decimals_);
-        __Ownable_init();
-        // Mint initial login reward amount for the contract itself
-        _mint(address(this), initialLoginRewardAmount);
+    mapping(address => bool) private _hasClaimed;
+
+    constructor() ERC20("CZToken", "CZ") {
+        _mint(msg.sender, 1000000 * 10**18);
     }
 
-    function mint(address to, uint256 amount) public onlyOwner {
-        _mint(to, amount);
-    }
+    function claimTokens() public {
+        require(!_hasClaimed[msg.sender], "Tokens already claimed!");
 
-    function claimLoginReward() public {
-        require(!hasClaimedLoginReward[msg.sender], "Reward already claimed");
-        // Ensure the contract has enough tokens to give as a reward
-        require(balanceOf(address(this)) >= 10, "Insufficient balance in contract for login reward");
-        _transfer(address(this), msg.sender, 10);
-        hasClaimedLoginReward[msg.sender] = true;
-    }
+        uint256 amount = 5 * 10**18;
+        _mint(msg.sender, amount);
 
-    function rewardUserForChallenge(address user, uint256 amount) public {
-        // Ensure the contract has enough tokens to give as a reward
-        require(balanceOf(address(this)) >= amount, "Insufficient balance in contract for challenge reward");
-        _transfer(address(this), user, amount);
-    }
-
-    uint8 private _decimals;
-    function _setupDecimals(uint8 decimals_) internal {
-        _decimals = decimals_;
-    }
-    function decimals() public view override returns (uint8) {
-        return _decimals;
+        _hasClaimed[msg.sender] = true;
     }
 }

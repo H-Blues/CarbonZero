@@ -13,17 +13,17 @@ describe("CZToken", function () {
     [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
 
     czToken = await CZToken.deploy();
-    await czToken.initialize(18, "CZToken", "CZ", 1000);
+    await czToken.initialize(18, "CZToken", "CZ", 100000000000000000000000000000000000);
   });
 
   describe("Claim Login Reward", function () {
     it("Should mint 10 tokens as login reward for a new user", async function () {
-      await czToken.connect(addr1).claimLoginReward();
-      expect(await czToken.balanceOf(addr1.address)).to.equal(10);
+      await czToken.claimLoginReward(addr1.address);
+      expect(await czToken.balanceOf(addr1.address)).to.equal(1000000);
     });
 
     it("Should not allow claiming login reward more than once", async function () {
-      await czToken.connect(addr1).claimLoginReward();
+      await czToken.claimLoginReward();
       await expect(czToken.connect(addr1).claimLoginReward()).to.be.revertedWith("Reward already claimed");
     });
 

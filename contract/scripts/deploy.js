@@ -12,7 +12,6 @@ async function main() {
   const CZToken = await hre.ethers.getContractFactory("CZToken");
   const czToken = await CZToken.deploy();
   await czToken.deployed();
-  await czToken.initialize(18, "CZToken", "CZ", 100000000);
   console.log("CZToken deployed to:", czToken.address);
 
   const ContractManager = await hre.ethers.getContractFactory("Manager");
