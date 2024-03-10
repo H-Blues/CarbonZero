@@ -13,36 +13,7 @@ function Footer() {
                   <div className="footer__about">
                     <Link href="/" className="footer__about-logo"><img src="images/logo/logo-dark.png"
                       alt="Logo" /></Link>
-                    <p className="footer__about-moto ">Welcome to our trading site! We offer the best, most
-                      affordable products and services around. Shop now and start finding great deals!</p>
-                    <div className="footer__app">
-                      <div className="footer__app-item footer__app-item--apple">
-                        <div className="footer__app-inner">
-                          <div className="footer__app-thumb">
-                            <Link href="https://www.apple.com/app-store/" target="_blank" className="stretched-link">
-                              <img src="images/footer/apple.png" alt="apple-icon" />
-                            </Link>
-                          </div>
-                          <div className="footer__app-content">
-                            <span>Download on the</span>
-                            <p className="mb-0">App Store</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="footer__app-item footer__app-item--playstore">
-                        <div className="footer__app-inner">
-                          <div className="footer__app-thumb">
-                            <Link href="https://play.google.com/store" target="_blank" className="stretched-link">
-                              <img src="images/footer/play.png" alt="playstore-icon" />
-                            </Link>
-                          </div>
-                          <div className="footer__app-content">
-                            <span>GET IT ON</span>
-                            <p className="mb-0">Google Play</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <p className="footer__about-moto ">Most creative B2C carbon neutral platform | A new direction for ReFi | Real world asset verification</p>
                   </div>
                 </div>
                 <div className="col-md-2 col-sm-4 col-6">
@@ -106,8 +77,6 @@ function Footer() {
             <div className="footer__bottom">
               <div className="footer__end">
                 <div className="footer__end-copyright">
-                  <p className=" mb-0">© 2024 All Rights Reserved By <Link href="https://themeforest.net/user/thetork/portfolio"
-                    target="_blank">Thetork</Link> </p>
                 </div>
                 <div>
                   <ul className="social">

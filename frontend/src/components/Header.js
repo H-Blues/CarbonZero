@@ -144,7 +144,7 @@ function Header({ headerClass = null }) {
             <div className="header-wrapper">
               <div className="logo">
                 <Link href="/">
-                  <img className="dark" src="/images/logo/logo.png" alt="logo" />
+                  <img className="dark" src="/images/logo/logo.png" width={100} height={100} alt="logo" />
                 </Link>
               </div>
               <div className="menu-area">

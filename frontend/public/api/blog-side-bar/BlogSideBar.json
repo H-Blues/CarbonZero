@@ -4,13 +4,13 @@
     "img": "/images/blog/1.png",
     "tag": {
       "style": 1,
-      "text": "Forex trading"
+      "text": "E-commerce"
     },
-    "title": "online trading for beginners",
-    "description": "Lorem ipsum dolor sit amet Iaculis suspendisse semper m dolor amet Iaculis lectus ipsum dolor sit amet Iaculis suspendisse semper amet lectus...",
+    "title": "Eco-friendly packaging",
+    "description": "Sustainability has always been important for eBay — from the very beginning, when the site started as an online auctions platform for selling unique items with history..",
     "writer": {
       "img": "/images/blog/author/1.png",
-      "name": "Senturk Yasar",
+      "name": "eBay",
       "date": "Mar 25, 2024"
     }
   },
@@ -19,73 +19,73 @@
     "img": "/images/blog/2.png",
     "tag": {
       "style": 2,
-      "text": "Trading market"
+      "text": "Fashion"
     },
-    "title": "advantages of day trading",
-    "description": "Lorem ipsum dolor sit amet Iaculis suspendisse semper m dolor amet Iaculis lectus ipsum dolor sit amet Iaculis suspendisse semper amet lectus...",
+    "title": "Circular fashion",
+    "description": "Resale is one of several circular business models that is helping the fashion industry shift from a linear ‘take-make-waste’ approach to a circular system.",
     "writer": {
       "img": "/images/blog/author/2.png",
-      "name": "Yilmaz Orhan",
+      "name": "Hennes & Mauritz AB",
       "date": "Feb 10, 2024"
     }
   },
   {
     "id": 3,
-    "img": "/images/blog/9.png",
+    "img": "/images/blog/3.png",
     "tag": {
-      "style": 2,
-      "text": "Management"
+      "style": 3,
+      "text": "Automotive"
     },
-    "title": "Essential for Small Business",
-    "description": "Running a small business requires hard work, but don't forget the essentials: a solid business plan, reliable team, and great communication skills!",
+    "title": "Solar Panels for Your Home",
+    "description": "Use solar energy to power your home and reduce your dependence on the grid. Purchase solar at the lowest price of any national provider with Tesla's price match guarantee and take control of your monthly electricity bill.",
     "writer": {
       "img": "/images/blog/author/3.png",
-      "name": "Huseyin Akcagul",
+      "name": "Tesla",
       "date": "May 16, 2024"
     }
   },
   {
     "id": 4,
-    "img": "/images/blog/3.png",
+    "img": "/images/blog/4.png",
     "tag": {
-      "style": 1,
-      "text": "Investment"
+      "style": 2,
+      "text": "Fashion retail"
     },
-    "title": "Conditions to Claim Deduction",
-    "description": "Lorem ipsum dolor sit amet Iaculis suspendisse semper m dolor amet Iaculis lectus ipsum dolor sit amet Iaculis suspendisse semper amet lectus...",
+    "title": "Move to Zero",
+    "description": "Resale is one of several circular business models that is helping the fashion industry shift from a linear ‘take-make-waste’ approach to a circular system.s",
     "writer": {
       "img": "/images/blog/author/6.png",
-      "name": "Avni Evran",
+      "name": "Nike",
       "date": "Feb 16, 2024"
     }
   },
   {
     "id": 5,
-    "img": "/images/blog/4.png",
+    "img": "/images/blog/5.png",
     "tag": {
-      "style": 2,
-      "text": "Forex trading"
+      "style": 4,
+      "text": "Catering, Retail"
     },
-    "title": "extra source of income",
+    "title": "Borrow a Cup",
     "description": "Lorem ipsum dolor sit amet Iaculis suspendisse semper m dolor amet Iaculis lectus ipsum dolor sit amet Iaculis suspendisse semper amet lectus...",
     "writer": {
       "img": "/images/blog/author/4.png",
-      "name": "Gazali Oztepe",
+      "name": "Starbucks",
       "date": "Mar 29, 2024"
     }
   },
   {
     "id": 6,
-    "img": "/images/blog/5.png",
+    "img": "/images/blog/6.png",
     "tag": {
-      "style": 1,
-      "text": "Investment"
+      "style": 5,
+      "text": "Retail"
     },
-    "title": "control trades and portfolio",
-    "description": "Lorem ipsum dolor sit amet Iaculis suspendisse semper m dolor amet Iaculis lectus ipsum dolor sit amet Iaculis suspendisse semper amet lectus...",
+    "title": "Integrate Trees",
+    "description": "At DGB Group, we firmly believe that integrating trees into businesses should be accessible, practical, and impactful. ",
     "writer": {
       "img": "/images/blog/author/5.png",
-      "name": "Muazzez Yasar",
+      "name": "IKEA",
       "date": "Nov 22, 2024"
     }
   }

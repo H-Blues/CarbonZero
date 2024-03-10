@@ -183,7 +183,7 @@ const Blog = () => {
                               </span>
                             </div>
                             <h5 className="10">
-                              <Link href="blog-details">
+                              <Link href="details">
                                 {item.title}
                               </Link>
                             </h5>

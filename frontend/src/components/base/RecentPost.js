@@ -12,11 +12,11 @@ const RecentPost = () => {
             <div className="sidebar__recentpost-item">
               <div className="sidebar__recentpost-inner">
                 <div className="sidebar__recentpost-thumb">
-                  <Link href="blog-details"><img src="/images/blog/recent/1.png"
+                  <Link href="details"><img src="/images/blog/recent/1.png"
                     alt="recentpost-image" /></Link>
                 </div>
                 <div className="sidebar__recentpost-content">
-                  <p><Link href="blog-details">Real Estate Investing</Link></p>
+                  <p><Link href="details">Real Estate Investing</Link></p>
                   <span>Dec 22, 2024</span>
                 </div>
               </div>
@@ -26,11 +26,11 @@ const RecentPost = () => {
             <div className="sidebar__recentpost-item">
               <div className="sidebar__recentpost-inner">
                 <div className="sidebar__recentpost-thumb">
-                  <Link href="blog-details"><img src="/images/blog/recent/2.png"
+                  <Link href="details"><img src="/images/blog/recent/2.png"
                     alt="recentpost-image" /></Link>
                 </div>
                 <div className="sidebar__recentpost-content">
-                  <p><Link href="blog-details">Technical analysis </Link></p>
+                  <p><Link href="details">Technical analysis </Link></p>
                   <span>July 28, 2024</span>
                 </div>
               </div>
@@ -40,11 +40,11 @@ const RecentPost = () => {
             <div className="sidebar__recentpost-item">
               <div className="sidebar__recentpost-inner">
                 <div className="sidebar__recentpost-thumb">
-                  <Link href="blog-details"><img src="/images/blog/recent/3.png"
+                  <Link href="details"><img src="/images/blog/recent/3.png"
                     alt="recentpost-image" /></Link>
                 </div>
                 <div className="sidebar__recentpost-content">
-                  <p><Link href="blog-details">Trading risk tolerance</Link></p>
+                  <p><Link href="details">Trading risk tolerance</Link></p>
                   <span>May 18, 2024</span>
                 </div>
               </div>
@@ -54,11 +54,11 @@ const RecentPost = () => {
             <div className="sidebar__recentpost-item">
               <div className="sidebar__recentpost-inner">
                 <div className="sidebar__recentpost-thumb">
-                  <Link href="blog-details"><img src="/images/blog/recent/4.png"
+                  <Link href="details"><img src="/images/blog/recent/4.png"
                     alt="recentpost-image" /></Link>
                 </div>
                 <div className="sidebar__recentpost-content">
-                  <p><Link href="blog-details">Harmonic price pattern</Link></p>
+                  <p><Link href="details">Harmonic price pattern</Link></p>
                   <span>Feb 16, 2024</span>
                 </div>
               </div>

@@ -18,7 +18,7 @@ if (!projectId) {
 createWeb3Modal({
   wagmiConfig: config,
   projectId,
-  themeMode: 'light',
+  themeMode: 'dark',
   themeVariables: {
     '--w3m-accent': 'green',
   }

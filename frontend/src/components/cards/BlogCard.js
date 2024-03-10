@@ -15,7 +15,7 @@ const BlogCard = ({ data }) => {
             </span>
           </div>
           <h5 className="10 style2">
-            <Link href="blog-details">{data.title}</Link>
+            <Link href="details">{data.title}</Link>
           </h5>
 
           <p className="mb-15">{data.description}</p>

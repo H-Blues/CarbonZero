@@ -3,70 +3,78 @@ import React from 'react'
 import CommentForm from './CommentForm'
 import Comments from './Comments'
 import Link from 'next/link'
+
 const BlogDetails = () => {
+
+  const buttonStyle = {
+    backgroundColor: "#90ee90",
+    color: "black",
+    border: "none",
+    borderRadius: "20px",
+    padding: "15px 30px",
+    margin: "-20px 30px 15px 10px",
+    cursor: "pointer",
+    outline: "none",
+  };
+
+  const join = () => {
+
+  }
+
+  const vote = () => {
+
+  }
   return (
     <div className="blog-details__item">
       <div className="blog-details__item-inner">
         <div className="blog-details__thumb">
           <div className="blog-details__thumb-inner" data-aos="fade-up" data-aos-duration="800">
-            <img src="/images/blog/details/1.png" alt="blog-image" />
+            <img src="/images/blog/2.png" alt="blog-image" />
           </div>
         </div>
         <div className="blog-details__content">
-          <h3> Advantages of day trading </h3>
+          <h3>  Circular fashion </h3>
           <div className="blog-details__meta">
             <ul>
-              <li><img src="/images/blog/icon/1.png" alt="user-icon" />
-                Dillion Megida</li>
-              <li><img src="/images/blog/icon/2.png" alt="date-icon" />
+              <li><img src="/images/icon/company.png" alt="user-icon" />
+                Hennes & Mauritz AB</li>
+              <li><img src="/images/icon/date.png" alt="date-icon" />
                 April 25, 2024</li>
               <li>
-                <Link scroll={false} href=""><img src="/images/blog/icon/3.png" alt="comment-icon" />
-                  4 Comments</Link>
+                <Link scroll={false} href=""><img src="/images/icon/vote.png" alt="comment-icon" />
+                  4 Votes </Link>
               </li>
             </ul>
           </div>
-          <p className="mb-0">Lorem ipsum dolor sit amet consectetur. At sed amet viverra etiam elit vivamus ultrices pharetra. Diam augue in dictumst nisl varius libero morbi dolor. Diam nibh lectus lectus volutpat praesent vulputate condimentum. Leo ipsum mi amet ut at vitae. Eu proin lacus maecenas nibh lectus lectus .</p>
+          <p className="mb-0">Resale is one of several circular business models that is helping the fashion industry shift from a linear ‘take-make-waste’ approach to a circular system. “One pillar of circular fashion is increasing how much existing clothing is used. As well as wearing the items you already own more often, this can mean repairing damaged garments, buying second hand or renting”, explains Sara.</p>
         </div>
         <div className="blog-details__segment" data-aos="fade-up" data-aos-duration="1000">
           <div className="blog-details__segment-inner">
             <div className="blog-details__segment-item">
               <div className="row gy-4">
-                <div className="col-xl-6">
-                  <div className="blog-details__segment-thumb">
-                    <img src="/images/blog/details/2.png" alt="blog-image" />
-                  </div>
-                </div>
-                <div className="col-xl-6">
+                <div className="col-xl-12">
                   <div className="blog-details__segment-content">
-                    <h5>Short-term investment to
-                      the marker</h5>
-                    <p>Looking to make some quick cash in the market? Short-term investments might be just the
-                      ticket. </p>
-                    <p>
-                      They can be risky, but with a little research and some luck, you could see some solid
-                      returns
-                      in no time the market!</p>
+                    <p> H&M Group has launched several different resale initiatives including curated in-store assortments as well as peer to peer websites where people sell their preloved pieces direct to other customers (see full list below). In addition, the group is the majority owner of Sellpy, an online platform that aims to make shopping and selling second hand as easy as possible by taking care of the whole process – photographing, listing and then shipping items when sold. Since 2022, Sellpy’s assortment has been integrated into H&M’s online stores in Germany and Sweden. </p>
                   </div>
                 </div>
-                <div className="col-xl-6">
-                  <div className="blog-details__segment-content">
-                    <h5>long-term investment to
-                      higher return</h5>
-                    <p className="mb-0">If you're looking to make some serious cash, a long-term investment is
-                      definitely the way
-                      to go. Sure, it may take a little patience, but the returns will be worth it in the end!
-                      Don't settle for mediocre gains when you could be making bank with a smart.</p>
-                  </div>
-                </div>
-                <div className="col-xl-6">
-                  <div className="blog-details__segment-thumb">
-                    <img src="/images/blog/details/3.png" alt="blog-image" />
-                  </div>
+                <div className="col-xl-12">
+                  <p className="mb-0">Although resale is growing, there is still a way to go before it becomes mainstream. “For a growing customer base buying and selling second hand clothing is just as normal as buying new. We hope that by offering resale alongside our traditional assortment both in store and online we can encourage more people to feel the same, so shopping second hand becomes a natural part of their experience with us”, states Sara..</p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <h4 className="blog-details__content">Excepted carbon saved: 500 Gt </h4>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "auto" }}>
+
+          <button style={buttonStyle} onClick={() => console.log("Join")}>
+            Join
+          </button>
+
+          <button style={buttonStyle} onClick={() => console.log("Vote")}>
+            Vote
+          </button>
         </div>
         <div className="blog-details__action" data-aos="fade-up" data-aos-duration="1000">
           <div className="blog-details__action-inner">
@@ -76,8 +84,8 @@ const BlogDetails = () => {
                   <li>
                     <h6 className="mb-0">Tags</h6>
                   </li>
-                  <li><Link scroll={false} href="" className="active">trading</Link></li>
-                  <li><Link scroll={false} href="">investor</Link></li>
+                  <li><Link scroll={false} href="" className="active">Life</Link></li>
+                  <li><Link scroll={false} href="">fashion</Link></li>
                 </ul>
               </div>
             </div>
@@ -104,8 +112,7 @@ const BlogDetails = () => {
             </div>
           </div>
         </div>
-        <Comments />
-        <CommentForm />
+
       </div>
     </div>
   )

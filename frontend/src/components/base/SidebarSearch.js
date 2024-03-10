@@ -8,7 +8,7 @@ const SidebarSearch = () => {
       <div className="sidebar__search-body">
         <form className="" action="">
           <div className="input">
-            <input type="text" className="form-control" placeholder="Search articles"/>
+            <input type="text" className="form-control" placeholder="Search" />
             <button type="submit" className="search-btn"><i className="fa-solid fa-magnifying-glass"></i></button>
           </div>
         </form>
